@@ -1,10 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hello_world/src/pages/commom_widgets/app_name_widget.dart';
 import 'package:hello_world/src/pages/commom_widgets/custom_text_field.dart';
-import 'package:hello_world/src/pages/auth/sign_up_screen.dart';
-import 'package:hello_world/src/pages/base/base_screen.dart';
 import 'package:hello_world/src/config/custom_colors.dart';
+import 'package:hello_world/src/pages_routes/app_pages.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -39,11 +39,12 @@ class SignInScreen extends StatelessWidget {
                       ),
                       child: AnimatedTextKit(
                           pause: Duration.zero,
-                          repeatForever: true, animatedTexts: [
-                        FadeAnimatedText('Frutas'),
-                        FadeAnimatedText('Verduras'),
-                        FadeAnimatedText('Legumes'),
-                      ]),
+                          repeatForever: true,
+                          animatedTexts: [
+                            FadeAnimatedText('Frutas'),
+                            FadeAnimatedText('Verduras'),
+                            FadeAnimatedText('Legumes'),
+                          ]),
                     ),
                   )
                 ],
@@ -58,7 +59,8 @@ class SignInScreen extends StatelessWidget {
               ),
               decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(45))),
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(45))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -82,13 +84,7 @@ class SignInScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18))),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (c) {
-                            return const BaseScreen();
-                          })
-                        );
-                      },
+                      onPressed: () => Get.toNamed(PagesRoutes.baseRoute),
                       child: const Text(
                         'Entrar',
                         style: TextStyle(
@@ -105,7 +101,8 @@ class SignInScreen extends StatelessWidget {
                       onPressed: () {},
                       child: Text(
                         'Esqueceu a senha?',
-                        style: TextStyle(color: CustomColors.customContrastColor),
+                        style:
+                            TextStyle(color: CustomColors.customContrastColor),
                       ),
                     ),
                   ),
@@ -142,17 +139,11 @@ class SignInScreen extends StatelessWidget {
                         style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18)),
-                            side: BorderSide(
+                            side: const BorderSide(
                               width: 2,
                               color: Colors.green,
                             )),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (c) {
-                              return SignUpScreen();
-                          }),
-                          );
-                        },
+                        onPressed: () => Get.toNamed(PagesRoutes.signUpRoute),
                         child: const Text(
                           'Criar conta',
                           style: TextStyle(
