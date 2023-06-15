@@ -20,6 +20,8 @@ class _CartTabState extends State<CartTab> {
   void removeItemFromCart(CartItemModel cartItem) {
     setState(() {
       app_data.cartItems.remove(cartItem);
+
+      utilsServices.showToast(message: '${cartItem.item.itemName} removido(a) do carrinho');
     });
   }
 
@@ -41,14 +43,14 @@ class _CartTabState extends State<CartTab> {
         children: [
           Expanded(
               child: ListView.builder(
-                itemCount: app_data.cartItems.length,
-                itemBuilder: (_, index) {
-                  return CartTile(
-                    cartItem: app_data.cartItems[index],
-                    remove: removeItemFromCart,
-                  );
-                },
-              )),
+            itemCount: app_data.cartItems.length,
+            itemBuilder: (_, index) {
+              return CartTile(
+                cartItem: app_data.cartItems[index],
+                remove: removeItemFromCart,
+              );
+            },
+          )),
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -83,10 +85,16 @@ class _CartTabState extends State<CartTab> {
                   child: ElevatedButton(
                       onPressed: () async {
                         bool? result = await showOrderConfirmation();
-                        if(result ?? false) {
-                          showDialog(context: context, builder: (_) {
-                            return PaymentDialog(order: app_data.orders.first);
-                          });
+                        if (result ?? false) {
+                          showDialog(
+                            context: context,
+                            builder: (_) {
+                              return PaymentDialog(
+                                  order: app_data.orders.first);
+                            });
+                        }
+                        else {
+                          utilsServices.showToast(message: 'Pedido não confirmado');
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -110,32 +118,35 @@ class _CartTabState extends State<CartTab> {
   }
 
   Future<bool?> showOrderConfirmation() {
-    return showDialog<bool>(context: context, builder: (context) {
-      return AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        title: const Text('Confirmação'),
-        content: const Text('Deseja realmente concluir o pedido?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: const Text('Não'),
-          ),
-          
-          ElevatedButton(
-          style: ElevatedButton.styleFrom(
+    return showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop(true);
-          }, child: const Text('Sim'),),
-        ],
-      );
-    });
+            title: const Text('Confirmação'),
+            content: const Text('Deseja realmente concluir o pedido?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text('Não'),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text('Sim'),
+              ),
+            ],
+          );
+        });
   }
 }
