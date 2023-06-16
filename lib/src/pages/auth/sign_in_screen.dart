@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
 import 'package:hello_world/src/pages/commom_widgets/app_name_widget.dart';
 import 'package:hello_world/src/pages/commom_widgets/custom_text_field.dart';
 import 'package:hello_world/src/config/custom_colors.dart';
@@ -10,6 +11,9 @@ class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +74,13 @@ class SignInScreen extends StatelessWidget {
                   children: [
                     // EMAIL
                     CustomTextField(
+                      controler: emailController,
                       icon: Icons.email,
                       label: 'Email',
                       validator: (email) {
-                        if (email == null || email.isEmpty) return 'Email obrigatório';
+                        if (email == null || email.isEmpty) {
+                          return 'Email obrigatório';
+                        }
 
                         if (!email.isEmail) return 'Email inválido';
 
@@ -83,12 +90,17 @@ class SignInScreen extends StatelessWidget {
 
                     // SENHA
                     CustomTextField(
+                      controler: passwordController,
                       icon: Icons.lock,
                       label: 'Senha',
                       isSecret: true,
                       validator: (password) {
-                        if (password == null || password.isEmpty) return 'Email obrigatório';
-                        if (password.length < 6) return 'Digite uma senha com pelo menos 6 caracteres';
+                        if (password == null || password.isEmpty) {
+                          return 'Email obrigatório';
+                        }
+                        if (password.length < 6) {
+                          return 'Digite uma senha com pelo menos 6 caracteres';
+                        }
                         return null;
                       },
                     ),
@@ -96,21 +108,32 @@ class SignInScreen extends StatelessWidget {
                     // ENTER
                     SizedBox(
                       height: 50,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18))),
-                        onPressed: () => {
-                          if (_formKey.currentState!.validate()) {
-                            Get.toNamed(PagesRoutes.baseRoute)
-                          },
+                      child: GetX<AuthController>(
+                        builder: (authController) {
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18))),
+                            onPressed: authController.isLoading.value ? null : () {
+
+                              FocusScope.of(context).unfocus();
+
+                              if (_formKey.currentState!.validate()) {
+                                String email = emailController.text;
+                                String password = passwordController.text;
+                                authController.signIn(email: email, password: password);
+                              }
+                            },
+                            child: authController.isLoading.value
+                            ? const CircularProgressIndicator()
+                            : const Text(
+                              'Entrar',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          );
                         },
-                        child: const Text(
-                          'Entrar',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
                       ),
                     ),
 
@@ -121,8 +144,8 @@ class SignInScreen extends StatelessWidget {
                         onPressed: () {},
                         child: Text(
                           'Esqueceu a senha?',
-                          style:
-                              TextStyle(color: CustomColors.customContrastColor),
+                          style: TextStyle(
+                              color: CustomColors.customContrastColor),
                         ),
                       ),
                     ),
