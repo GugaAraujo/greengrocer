@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:hello_world/src/config/environments.dart';
 import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
 import 'package:hello_world/src/pages_routes/app_pages.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(fileName: Environments.fileName);
+  WidgetsFlutterBinding.ensureInitialized();
   Get.put(AuthController());
   runApp(const MyApp());
 }
@@ -13,14 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'Greengrocer',
-        theme: ThemeData(
+      title: 'Greengrocer',
+      theme: ThemeData(
           primarySwatch: Colors.green,
-          scaffoldBackgroundColor: Colors.white.withAlpha(190)
-        ),
-        debugShowCheckedModeBanner: false,
-        initialRoute:  PagesRoutes.splashRoute,
-        getPages: AppPages.pages,
+          scaffoldBackgroundColor: Colors.white.withAlpha(190)),
+      debugShowCheckedModeBanner: false,
+      initialRoute: PagesRoutes.splashRoute,
+      getPages: AppPages.pages,
     );
   }
 }

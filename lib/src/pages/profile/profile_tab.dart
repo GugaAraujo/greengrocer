@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
 import 'package:hello_world/src/pages/commom_widgets/custom_text_field.dart';
 import 'package:hello_world/src/config/app_data.dart' as app_data;
 
@@ -10,12 +12,17 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
+
+  final authController = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Perfil do usuário'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.logout))],
+        actions: [IconButton(onPressed: () {
+          authController.signOut();
+        }, icon: const Icon(Icons.logout))],
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),

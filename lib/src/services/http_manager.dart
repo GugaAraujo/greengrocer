@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hello_world/src/config/environments.dart';
 
 class HttpMethods {
   static const get = 'GET';
@@ -19,8 +20,8 @@ class HttpManager {
       ..addAll({
         'content-type': 'application/json',
         'accept': 'application/json',
-        'X-Parse-Application-Id': 'wK7GcEjr2V4br5q5mlR1kybQ5dvxMFDX0qtE1d6Y',
-        'X-Parse-REST-API-Key': '2kahi62fkWePLWAwC7k8aMrtQkobogcgkruMxbeB',
+        'X-Parse-Application-Id': Environments.parseApplicationId,
+        'X-Parse-REST-API-Key': Environments.parseRestApiKey,
       });
 
     Dio dio = Dio();

@@ -2,10 +2,14 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
+import 'package:hello_world/src/pages/auth/view/components/forgot_password_dialog.dart';
 import 'package:hello_world/src/pages/commom_widgets/app_name_widget.dart';
 import 'package:hello_world/src/pages/commom_widgets/custom_text_field.dart';
 import 'package:hello_world/src/config/custom_colors.dart';
 import 'package:hello_world/src/pages_routes/app_pages.dart';
+import 'package:hello_world/src/services/utils_services.dart';
+
+import '../../../services/validators.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -14,6 +18,7 @@ class SignInScreen extends StatelessWidget {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final utilsServices = UtilsServices();
 
   @override
   Widget build(BuildContext context) {
@@ -74,35 +79,19 @@ class SignInScreen extends StatelessWidget {
                   children: [
                     // EMAIL
                     CustomTextField(
-                      controler: emailController,
+                      controller: emailController,
                       icon: Icons.email,
                       label: 'Email',
-                      validator: (email) {
-                        if (email == null || email.isEmpty) {
-                          return 'Email obrigatório';
-                        }
-
-                        if (!email.isEmail) return 'Email inválido';
-
-                        return null;
-                      },
+                      validator: emailValidator,
                     ),
 
                     // SENHA
                     CustomTextField(
-                      controler: passwordController,
+                      controller: passwordController,
                       icon: Icons.lock,
                       label: 'Senha',
                       isSecret: true,
-                      validator: (password) {
-                        if (password == null || password.isEmpty) {
-                          return 'Email obrigatório';
-                        }
-                        if (password.length < 6) {
-                          return 'Digite uma senha com pelo menos 6 caracteres';
-                        }
-                        return null;
-                      },
+                      validator: passwordValidator,
                     ),
 
                     // ENTER
@@ -114,24 +103,26 @@ class SignInScreen extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18))),
-                            onPressed: authController.isLoading.value ? null : () {
+                            onPressed: authController.isLoading.value
+                                ? null
+                                : () {
+                                    FocusScope.of(context).unfocus();
 
-                              FocusScope.of(context).unfocus();
-
-                              if (_formKey.currentState!.validate()) {
-                                String email = emailController.text;
-                                String password = passwordController.text;
-                                authController.signIn(email: email, password: password);
-                              }
-                            },
+                                    if (_formKey.currentState!.validate()) {
+                                      String email = emailController.text;
+                                      String password = passwordController.text;
+                                      authController.signIn(
+                                          email: email, password: password);
+                                    }
+                                  },
                             child: authController.isLoading.value
-                            ? const CircularProgressIndicator()
-                            : const Text(
-                              'Entrar',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
+                                ? const CircularProgressIndicator()
+                                : const Text(
+                                    'Entrar',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
                           );
                         },
                       ),
@@ -141,7 +132,19 @@ class SignInScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          final bool? result = await showDialog(
+                              context: context,
+                              builder: (_) {
+                                return ForgotPasswordDialog(
+                                    email: emailController.text);
+                              });
+                          if (result ?? false) {
+                            utilsServices.showToast(
+                                message:
+                                    'Um link de recuperação foi enviado ao seu e-mail');
+                          }
+                        },
                         child: Text(
                           'Esqueceu a senha?',
                           style: TextStyle(
