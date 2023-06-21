@@ -7,4 +7,6 @@ abstract class Endpoint {
   static String signUp = '$baseUrl/signup';
   static String validateToken = '$baseUrl/validate-token';
   static String resetPassword = '$baseUrl/reset-password';
+  static String getAllCategories = '$baseUrl/get-category-list';
+  static String getAllProducts = '$baseUrl/get-product-list';
 }

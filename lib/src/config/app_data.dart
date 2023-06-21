@@ -5,6 +5,7 @@ import '../models/cart_item_model.dart';
 import '../models/order_model.dart';
 
 ItemModel apple = ItemModel(
+  id: '1',
     description:
     'A melhor maçã da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
     imgUrl: 'assets/fruits/apple.png',
@@ -14,6 +15,7 @@ ItemModel apple = ItemModel(
 );
 
 ItemModel grape = ItemModel(
+  id: '2',
     imgUrl: 'assets/fruits/grape.png',
     itemName: 'Uva',
     price: 7.4,
@@ -23,6 +25,7 @@ ItemModel grape = ItemModel(
 );
 
 ItemModel guava = ItemModel(
+    id: '3',
     imgUrl: 'assets/fruits/guava.png',
     itemName: 'Goiaba',
     price: 11.5,
@@ -32,6 +35,7 @@ ItemModel guava = ItemModel(
 );
 
 ItemModel kiwi = ItemModel(
+  id: '4',
     imgUrl: 'assets/fruits/kiwi.png',
     itemName: 'Kiwi',
     price: 2.5,
@@ -41,6 +45,7 @@ ItemModel kiwi = ItemModel(
 );
 
 ItemModel mango = ItemModel(
+  id: '5',
     imgUrl: 'assets/fruits/mango.png',
     itemName: 'Manga',
     price: 2.5,
@@ -50,6 +55,7 @@ ItemModel mango = ItemModel(
 );
 
 ItemModel papaya = ItemModel(
+  id: '6',
     imgUrl: 'assets/fruits/papaya.png',
     itemName: 'Mamão papaya',
     price: 8,
@@ -66,14 +72,6 @@ List<ItemModel> items = [
     kiwi,
     mango,
     papaya,
-];
-
-List<String> categories = [
-    'Frutas',
-    'Grãos',
-    'Verduras',
-    'Temperos',
-    'Cereais',
 ];
 
 List<CartItemModel> cartItems = [
