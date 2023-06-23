@@ -113,7 +113,7 @@ class _HomeTabState extends State<HomeTab> {
                           color: CustomColors.customContrastColor,
                           size: 21,
                         ),
-                        suffix: controller.searchTitle.value.isNotEmpty
+                        suffixIcon: controller.searchTitle.value.isNotEmpty
                             ? IconButton(
                                 onPressed: () {
                                   searchController.clear();
