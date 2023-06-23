@@ -7,6 +7,7 @@ import '../pages/auth/view/sign_up_screen.dart';
 import '../pages/base/binding/navigation_binding.dart';
 import '../pages/home/binding/home_binding.dart';
 import '../pages/cart/binding/cart_binding.dart';
+import '../pages/orders/binding/orders_binding.dart';
 
 abstract class AppPages {
   static final pages = <GetPage>[
@@ -33,6 +34,7 @@ abstract class AppPages {
         NavigationBinding(),
         HomeBinding(),
         CartBinding(),
+        OrdersBinding(),
       ]
     ),
   ];

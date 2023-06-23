@@ -13,4 +13,6 @@ abstract class Endpoint {
   static String addItemToCart = '$baseUrl/add-item-to-cart';
   static String changeItemQuantity = '$baseUrl/modify-item-quantity';
   static String checkout = '$baseUrl/checkout';
+  static String getAllOrders = '$baseUrl/get-orders';
+  static String getOrderItems = '$baseUrl/get-order-items';
 }

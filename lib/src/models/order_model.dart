@@ -7,6 +7,8 @@ part 'order_model.g.dart';
 @JsonSerializable()
 class OrderModel {
   String id;
+
+  @JsonKey(name: 'createdAt')
   DateTime? createdDateTime;
 
   @JsonKey(name: 'due')
@@ -21,6 +23,9 @@ class OrderModel {
   @JsonKey(name: 'copiaecola')
   String copyAndPast;
   double total;
+
+  bool get isOverDue => overdueDateTime.isBefore(DateTime.now());
+
   OrderModel({
     required this.id,
     this.createdDateTime,
