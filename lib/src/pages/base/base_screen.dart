@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/cart/cart_tab.dart';
+import '../cart/view/cart_tab.dart';
 import 'package:hello_world/src/pages/orders/order_tab.dart';
 import 'package:hello_world/src/pages/profile/profile_tab.dart';
 import '../home/view/home_tab.dart';

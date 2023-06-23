@@ -1,7 +1,6 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:hello_world/src/services/utils_services.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-
 import '../../models/order_model.dart';
 
 class PaymentDialog extends StatelessWidget {
@@ -39,10 +38,10 @@ class PaymentDialog extends StatelessWidget {
                   ),
 
                   // QR Code
-                  QrImage(
-                    data: 'q1w2e3r4t54y6u7i8o9',
-                    version: QrVersions.auto,
-                    size: 200.0,
+                  Image.memory(
+                    utilsServices.decodeQrCodeImage(order.qrCodeImage),
+                    height: 200,
+                    width: 200,
                   ),
 
                   // Vencimento
@@ -70,7 +69,10 @@ class PaymentDialog extends StatelessWidget {
                             width: 2,
                             color: Colors.green,
                           )),
-                      onPressed: () {},
+                      onPressed: () {
+                        FlutterClipboard.copy(order.copyAndPast);
+                        utilsServices.showToast(message: 'Código copiado');
+                      },
                       icon: const Icon(
                         Icons.copy,
                         size: 15,

@@ -6,13 +6,14 @@ import 'package:hello_world/src/pages/base/controller/navigation_controller.dart
 import 'package:hello_world/src/pages/commom_widgets/quantity_widgets.dart';
 import 'package:hello_world/src/services/utils_services.dart';
 
+import '../cart/controller/cart_controller.dart';
+
 class ProdcutScreen extends StatefulWidget {
-  const ProdcutScreen({
+  ProdcutScreen({
     Key? key,
-    required this.item,
   }) : super(key: key);
 
-  final ItemModel item;
+  final ItemModel item = Get.arguments;
 
   @override
   State<ProdcutScreen> createState() => _ProdcutScreenState();
@@ -23,6 +24,7 @@ class _ProdcutScreenState extends State<ProdcutScreen> {
 
   int cartItemQuantity = 1;
 
+  final cartController = Get.find<CartController>();
   final navigationController = Get.find<NavigationController>();
 
   @override
@@ -116,6 +118,12 @@ class _ProdcutScreenState extends State<ProdcutScreen> {
                         )),
                         onPressed: () {
                           Get.back();
+
+                          cartController.addItemToCart(
+                            item: widget.item,
+                            quantity: cartItemQuantity,
+                          );
+
                           navigationController
                               .navigatePageView(NavigationTabs.cart);
                         },

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hello_world/src/pages/cart/controller/cart_controller.dart';
+import 'package:hello_world/src/pages_routes/app_pages.dart';
 
 import '../../../../config/custom_colors.dart';
 import '../../../../models/item_model.dart';
@@ -23,6 +26,7 @@ class _ItemTileState extends State<ItemTile> {
   final GlobalKey imageGk = GlobalKey();
 
   final UtilsServices utilsServices = UtilsServices();
+  final CartController cartController = Get.find<CartController>();
 
   IconData tileIcon = Icons.add_shopping_cart_outlined;
 
@@ -39,9 +43,7 @@ class _ItemTileState extends State<ItemTile> {
         // CONTENT
         GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (c) {
-              return ProdcutScreen(item: widget.item);
-            }));
+            Get.toNamed(PagesRoutes.productRoute, arguments: widget.item);
           },
           child: Card(
             elevation: 3,
@@ -111,6 +113,7 @@ class _ItemTileState extends State<ItemTile> {
               child: InkWell(
                 onTap: () {
                   switchIcon();
+                  cartController.addItemToCart(item: widget.item);
                   widget.cartAnimationMethod(imageGk);
                 },
                 child: Ink(

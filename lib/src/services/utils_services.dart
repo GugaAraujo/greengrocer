@@ -1,13 +1,17 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-class UtilsServices {
 
+class UtilsServices {
   final storage = const FlutterSecureStorage();
 
-  Future<void> saveLocalData({required String key, required String value}) async {
+  Future<void> saveLocalData(
+      {required String key, required String value}) async {
     await storage.write(key: key, value: value);
   }
 
@@ -20,7 +24,7 @@ class UtilsServices {
   }
 
   priceToCurrency(double price) {
-    NumberFormat numberFormat = NumberFormat.simpleCurrency( locale: 'pt_BR');
+    NumberFormat numberFormat = NumberFormat.simpleCurrency(locale: 'pt_BR');
     return numberFormat.format(price);
   }
 
@@ -30,14 +34,22 @@ class UtilsServices {
     return dateFormat.format(dateTime);
   }
 
-  void showToast({required String message, bool isError = false,}) {
+  Uint8List decodeQrCodeImage(String base64Image) {
+    String base64String = base64Image.split(',').last;
+    return base64.decode(base64String);
+  }
+
+  void showToast({
+    required String message,
+    bool isError = false,
+  }) {
     Fluttertoast.showToast(
-      msg: message,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 3,
-      backgroundColor: isError ? Colors.red : Colors.white,
-      textColor: isError ? Colors.white : Colors.black,
-      fontSize: 14.0);
-    }
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: isError ? Colors.red : Colors.white,
+        textColor: isError ? Colors.white : Colors.black,
+        fontSize: 14.0);
+  }
 }

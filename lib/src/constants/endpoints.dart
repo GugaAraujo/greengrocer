@@ -9,4 +9,8 @@ abstract class Endpoint {
   static String resetPassword = '$baseUrl/reset-password';
   static String getAllCategories = '$baseUrl/get-category-list';
   static String getAllProducts = '$baseUrl/get-product-list';
+  static String getCartItems = '$baseUrl/get-cart-items';
+  static String addItemToCart = '$baseUrl/add-item-to-cart';
+  static String changeItemQuantity = '$baseUrl/modify-item-quantity';
+  static String checkout = '$baseUrl/checkout';
 }
