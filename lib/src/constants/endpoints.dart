@@ -1,4 +1,5 @@
-import 'package:hello_world/src/config/environments.dart';
+
+import '../config/environments.dart';
 
 String baseUrl = Environments.apiUrl;
 

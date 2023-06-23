@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../cart/view/cart_tab.dart';
+import '../profile/profile_tab.dart';
 import 'controller/navigation_controller.dart';
-import 'package:hello_world/src/pages/profile/profile_tab.dart';
 import '../home/view/home_tab.dart';
 import '../orders/view/order_tab.dart';
 

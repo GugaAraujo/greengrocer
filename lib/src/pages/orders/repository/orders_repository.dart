@@ -1,9 +1,8 @@
-import 'package:hello_world/src/constants/endpoints.dart';
-import 'package:hello_world/src/models/cart_item_model.dart';
-import 'package:hello_world/src/models/order_model.dart';
-import 'package:hello_world/src/pages/orders/result/orders_result.dart';
-
+import '../../../constants/endpoints.dart';
+import '../../../models/cart_item_model.dart';
+import '../../../models/order_model.dart';
 import '../../../services/http_manager.dart';
+import '../result/orders_result.dart';
 
 class OrdersRepository {
   final _httpManager = HttpManager();

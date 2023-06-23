@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/orders/controller/all_orders_controller.dart';
-
+import '../controller/all_orders_controller.dart';
 import 'components/order_tile.dart';
 
 class OrdersTab extends StatelessWidget {

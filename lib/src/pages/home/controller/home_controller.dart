@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
-import 'package:hello_world/src/services/utils_services.dart';
-
 import '../../../models/category_model.dart';
 import '../../../models/item_model.dart';
+import '../../../services/utils_services.dart';
 import '../repository/home_repository.dart';
 import '../result/home_result.dart';
 

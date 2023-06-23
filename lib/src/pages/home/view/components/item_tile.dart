@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/cart/controller/cart_controller.dart';
-import 'package:hello_world/src/pages_routes/app_pages.dart';
-
 import '../../../../config/custom_colors.dart';
 import '../../../../models/item_model.dart';
+import '../../../../pages_routes/app_pages.dart';
 import '../../../../services/utils_services.dart';
-import '../../../product/product_screen.dart';
+import '../../../cart/controller/cart_controller.dart';
 
 class ItemTile extends StatefulWidget {
   final ItemModel item;

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/cart/controller/cart_controller.dart';
 import '../../../config/custom_colors.dart';
-import '../../../models/cart_item_model.dart';
 import '../../../services/utils_services.dart';
-import '../../../config/app_data.dart' as app_data;
-import '../../commom_widgets/payment_dialog.dart';
+import '../controller/cart_controller.dart';
 import 'components/cart_tile.dart';
 
 class CartTab extends StatefulWidget {

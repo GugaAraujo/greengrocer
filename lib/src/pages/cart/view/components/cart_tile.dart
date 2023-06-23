@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/config/app_data.dart';
-import 'package:hello_world/src/config/custom_colors.dart';
-import 'package:hello_world/src/models/cart_item_model.dart';
-import 'package:hello_world/src/pages/commom_widgets/quantity_widgets.dart';
-import 'package:hello_world/src/services/utils_services.dart';
-
+import '../../../../config/custom_colors.dart';
+import '../../../../models/cart_item_model.dart';
+import '../../../../services/utils_services.dart';
+import '../../../commom_widgets/quantity_widgets.dart';
 import '../../controller/cart_controller.dart';
 
 class CartTile extends StatefulWidget {

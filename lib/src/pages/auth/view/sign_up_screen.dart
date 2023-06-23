@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
-import 'package:hello_world/src/pages/commom_widgets/custom_text_field.dart';
-import 'package:hello_world/src/config/custom_colors.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../../../config/custom_colors.dart';
 import '../../../services/validators.dart';
+import '../../commom_widgets/custom_text_field.dart';
+import '../controller/auth_controller.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);

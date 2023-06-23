@@ -1,9 +1,9 @@
-import 'package:hello_world/src/constants/endpoints.dart';
-import 'package:hello_world/src/models/user_model.dart';
-import 'package:hello_world/src/pages/auth/repository/auth_erros.dart'
-    as authErrors;
-import 'package:hello_world/src/pages/auth/result/auth_result.dart';
-import 'package:hello_world/src/services/http_manager.dart';
+import './auth_erros.dart' as authErrors;
+
+import '../../../constants/endpoints.dart';
+import '../../../models/user_model.dart';
+import '../../../services/http_manager.dart';
+import '../result/auth_result.dart';
 
 class AuthRepository {
   final HttpManager _httpManager = HttpManager();
@@ -24,15 +24,16 @@ class AuthRepository {
     required String email,
   }) async {
     final result = await _httpManager.restRequest(
-      url: Endpoint.changePassword,
-      method: HttpMethods.post,
-      body: {
-        'email': email,
-        'currentPassword': currentPassword,
-        'newPassword': newPassword,
-      },
-      headers: {'X-Parse-Session-Token': token}
-    );
+        url: Endpoint.changePassword,
+        method: HttpMethods.post,
+        body: {
+          'email': email,
+          'currentPassword': currentPassword,
+          'newPassword': newPassword,
+        },
+        headers: {
+          'X-Parse-Session-Token': token
+        });
 
     return result['error'] == null;
   }

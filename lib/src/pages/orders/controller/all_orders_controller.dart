@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:hello_world/src/models/order_model.dart';
-import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
-import 'package:hello_world/src/pages/orders/repository/orders_repository.dart';
-import 'package:hello_world/src/pages/orders/result/orders_result.dart';
-import 'package:hello_world/src/services/utils_services.dart';
 
+import '../../../models/order_model.dart';
+import '../../../services/utils_services.dart';
+import '../../auth/controller/auth_controller.dart';
+import '../repository/orders_repository.dart';
+import '../result/orders_result.dart';
 class AllOrdersController extends GetxController {
   List<OrderModel> allOrders = [];
   final ordersRepository = OrdersRepository();

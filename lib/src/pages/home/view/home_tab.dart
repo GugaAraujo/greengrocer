@@ -1,12 +1,10 @@
 import 'package:add_to_cart_animation/add_to_cart_icon.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/base/controller/navigation_controller.dart';
-import 'package:hello_world/src/pages/cart/controller/cart_controller.dart';
 import '../../../config/custom_colors.dart';
 import 'package:badges/badges.dart' as packageBadge;
-import '../../../config/app_data.dart' as app_data;
+import '../../base/controller/navigation_controller.dart';
+import '../../cart/controller/cart_controller.dart';
 import '../../commom_widgets/custom_shimmer.dart';
 import './components/item_tile.dart';
 import '../../commom_widgets/app_name_widget.dart';

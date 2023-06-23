@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:hello_world/src/config/environments.dart';
+
+import '../config/environments.dart';
 
 class HttpMethods {
   static const get = 'GET';

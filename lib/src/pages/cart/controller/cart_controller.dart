@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/models/order_model.dart';
-import 'package:hello_world/src/services/utils_services.dart';
-
 import '../../../models/cart_item_model.dart';
 import '../../../models/item_model.dart';
+import '../../../models/order_model.dart';
+import '../../../services/utils_services.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../../commom_widgets/payment_dialog.dart';
 import '../repository/cart_repository.dart';

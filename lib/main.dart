@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/config/environments.dart';
-import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
-import 'package:hello_world/src/pages_routes/app_pages.dart';
+import 'src/config/environments.dart';
+import 'src/pages/auth/controller/auth_controller.dart';
+import 'src/pages_routes/app_pages.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: Environments.fileName);

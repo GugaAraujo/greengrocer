@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/base/base_screen.dart';
-import 'package:hello_world/src/pages/product/product_screen.dart';
-import 'package:hello_world/src/pages/splash/splash_screen.dart';
 import '../pages/auth/view/sign_in_screen.dart';
 import '../pages/auth/view/sign_up_screen.dart';
+import '../pages/base/base_screen.dart';
 import '../pages/base/binding/navigation_binding.dart';
 import '../pages/home/binding/home_binding.dart';
 import '../pages/cart/binding/cart_binding.dart';
 import '../pages/orders/binding/orders_binding.dart';
+import '../pages/product/product_screen.dart';
+import '../pages/splash/splash_screen.dart';
 
 abstract class AppPages {
   static final pages = <GetPage>[

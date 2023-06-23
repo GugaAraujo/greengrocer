@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/config/custom_colors.dart';
-import 'package:hello_world/src/models/item_model.dart';
-import 'package:hello_world/src/pages/base/controller/navigation_controller.dart';
-import 'package:hello_world/src/pages/commom_widgets/quantity_widgets.dart';
-import 'package:hello_world/src/services/utils_services.dart';
-
+import '../../config/custom_colors.dart';
+import '../../models/item_model.dart';
+import '../../services/utils_services.dart';
+import '../base/controller/navigation_controller.dart';
 import '../cart/controller/cart_controller.dart';
+import '../commom_widgets/quantity_widgets.dart';
 
 class ProdcutScreen extends StatefulWidget {
   ProdcutScreen({

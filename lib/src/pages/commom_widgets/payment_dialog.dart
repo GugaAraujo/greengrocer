@@ -1,7 +1,7 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_world/src/services/utils_services.dart';
 import '../../models/order_model.dart';
+import '../../services/utils_services.dart';
 
 class PaymentDialog extends StatelessWidget {
   final OrderModel order;

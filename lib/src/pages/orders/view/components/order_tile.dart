@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/orders/controller/order_controller.dart';
-
 import '../../../../models/cart_item_model.dart';
 import '../../../../models/order_model.dart';
 import '../../../../services/utils_services.dart';
 import '../../../commom_widgets/payment_dialog.dart';
+import '../../controller/order_controller.dart';
 import 'order_status_widget.dart';
 
 class OrderTile extends StatelessWidget {

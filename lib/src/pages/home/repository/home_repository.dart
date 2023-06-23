@@ -1,9 +1,8 @@
-import 'package:hello_world/src/models/category_model.dart';
-import 'package:hello_world/src/models/item_model.dart';
-import 'package:hello_world/src/pages/home/result/home_result.dart';
-
 import '../../../constants/endpoints.dart';
+import '../../../models/category_model.dart';
+import '../../../models/item_model.dart';
 import '../../../services/http_manager.dart';
+import '../result/home_result.dart';
 
 class HomeRepository {
   final HttpManager _httpManager = HttpManager();

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:hello_world/src/config/custom_colors.dart';
-import 'package:hello_world/src/pages/commom_widgets/app_name_widget.dart';
+
+import '../../config/custom_colors.dart';
+import '../commom_widgets/app_name_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

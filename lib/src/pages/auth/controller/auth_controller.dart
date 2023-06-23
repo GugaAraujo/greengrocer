@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
-import 'package:hello_world/src/constants/storage_keys.dart';
-import 'package:hello_world/src/pages/auth/repository/auth_repository.dart';
-import 'package:hello_world/src/pages/auth/result/auth_result.dart';
-import 'package:hello_world/src/services/utils_services.dart';
-
+import '../../../constants/storage_keys.dart';
 import '../../../models/user_model.dart';
 import '../../../pages_routes/app_pages.dart';
+import '../../../services/utils_services.dart';
+import '../repository/auth_repository.dart';
+import '../result/auth_result.dart';
 
 class AuthController extends GetxController {
   RxBool isLoading = false.obs;
