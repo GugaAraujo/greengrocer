@@ -62,15 +62,13 @@ class _HomeTabState extends State<HomeTab> {
                             fontSize: 12,
                           ),
                         ),
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: AddToCartIcon(
-                              key: globalKeyCartItems,
-                              icon: Icon(
-                                Icons.shopping_cart,
-                                color: CustomColors.customSwatchColor,
-                              ),
-                            )),
+                        child:  AddToCartIcon(
+                          key: globalKeyCartItems,
+                          icon: Icon(
+                            Icons.shopping_cart,
+                            color: CustomColors.customSwatchColor,
+                          ),
+                        ),
                       ));
                 },
               ),
