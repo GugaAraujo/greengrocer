@@ -15,6 +15,7 @@ class NavigationController extends GetxController {
   PageController get pageController => _pageController;
   int get currentIndex => _currentIndex.value;
 
+  @override
   void onInit() {
     super.onInit();
 
@@ -35,11 +36,7 @@ class NavigationController extends GetxController {
   void navigatePageView(int page) {
     if (_currentIndex.value == page) return;
 
-    _pageController.animateToPage(
-      page,
-      duration: const Duration(milliseconds: 700),
-      curve: Curves.ease,
-    );
+    _pageController.jumpToPage(page);
     _currentIndex.value = page;
   }
 }
