@@ -27,7 +27,7 @@ class CartController extends GetxController {
 
   double cartTotalPrice() {
     double total = 0;
-    for (var item in cartItems) {
+    for (final item in cartItems) {
       total += item.totalPrice();
     }
     return total;
@@ -157,5 +157,7 @@ class CartController extends GetxController {
         );
       });
     }
+
+    update();
   }
 }

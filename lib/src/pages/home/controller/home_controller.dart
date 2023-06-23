@@ -76,7 +76,7 @@ class HomeController extends GetxController {
   }
 
   void filterByTitle() {
-    for (var category in allCategories) {
+    for (final category in allCategories) {
       category.items.clear();
       category.pagination = 0;
     }
