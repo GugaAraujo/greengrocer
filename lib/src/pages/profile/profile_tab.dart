@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hello_world/src/pages/auth/controller/auth_controller.dart';
-import 'package:hello_world/src/pages/commom_widgets/custom_text_field.dart';
-import 'package:hello_world/src/config/app_data.dart' as app_data;
+
+import '../../services/validators.dart';
+import '../auth/controller/auth_controller.dart';
+import '../commom_widgets/custom_text_field.dart';
+
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({Key? key}) : super(key: key);
@@ -12,7 +14,6 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
-
   final authController = Get.find<AuthController>();
 
   @override
@@ -20,9 +21,13 @@ class _ProfileTabState extends State<ProfileTab> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Perfil do usuário'),
-        actions: [IconButton(onPressed: () {
-          authController.signOut();
-        }, icon: const Icon(Icons.logout))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                authController.signOut();
+              },
+              icon: const Icon(Icons.logout))
+        ],
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
@@ -31,28 +36,28 @@ class _ProfileTabState extends State<ProfileTab> {
           // Email
           CustomTextField(
               readOnly: true,
-              initialValue: app_data.user.email,
+              initialValue: authController.user.email,
               icon: Icons.email,
               label: 'Email'),
 
           // Nome
           CustomTextField(
               readOnly: true,
-              initialValue: app_data.user.name,
+              initialValue: authController.user.name,
               icon: Icons.person,
               label: 'Nome'),
 
           // Celular
           CustomTextField(
               readOnly: true,
-              initialValue: app_data.user.phone,
+              initialValue: authController.user.phone,
               icon: Icons.phone,
               label: 'Celular'),
 
           // CPF
           CustomTextField(
             readOnly: true,
-            initialValue: app_data.user.cpf,
+            initialValue: authController.user.cpf,
             icon: Icons.file_copy,
             label: 'CPF',
             isSecret: true,
@@ -79,6 +84,10 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   Future<bool?> updatePassword() {
+    final newPasswordController = TextEditingController();
+    final currentPasswordController = TextEditingController();
+    final formKey = GlobalKey<FormState>();
+
     return showDialog(
         context: context,
         builder: (context) {
@@ -90,47 +99,76 @@ class _ProfileTabState extends State<ProfileTab> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // titulo
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
-                        child: Text('Atualização de senha',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                      ),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // titulo
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: Text('Atualização de senha',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              )),
+                        ),
 
-                      // senhas
-                      const CustomTextField(
+                        // senhas
+                        CustomTextField(
+                          controller: currentPasswordController,
                           isSecret: true,
                           icon: Icons.lock,
-                          label: 'Senha atual'),
-                      const CustomTextField(
+                          label: 'Senha atual',
+                          validator: passwordValidator,
+                        ),
+                        CustomTextField(
+                          controller: newPasswordController,
                           isSecret: true,
                           icon: Icons.lock_outline,
-                          label: 'Nova senha'),
-                      const CustomTextField(
+                          label: 'Nova senha',
+                          validator: passwordValidator,
+                        ),
+                        CustomTextField(
                           isSecret: true,
                           icon: Icons.lock_outline,
-                          label: 'Confirmar nova senha'),
+                          label: 'Confirmar nova senha',
+                          validator: (password) {
+                            final result = passwordValidator(password);
+                            if (result != null) return result;
+                            if (password != newPasswordController.text) {
+                              return 'As senhas não conferem';
+                            }
+                            return null;
+                          },
+                        ),
 
-                      // Botao Confirmação
-                      SizedBox(
-                        height: 45,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            onPressed: () {},
-                            child: const Text('Atualizar')),
-                      )
-                    ],
+                        // Botao Confirmação
+                        SizedBox(
+                          height: 45,
+                          child: Obx(() => ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              onPressed: authController.isLoading.value
+                                  ? null
+                                  : () {
+                                      if (formKey.currentState!.validate()) {
+                                        authController.changePassword(
+                                          currentPassword: currentPasswordController.text,
+                                          newPassword: newPasswordController.text,
+                                        );
+                                      }
+                                    },
+                              child: authController.isLoading.value
+                                  ? const CircularProgressIndicator()
+                                  : const Text('Atualizar'))),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Positioned(

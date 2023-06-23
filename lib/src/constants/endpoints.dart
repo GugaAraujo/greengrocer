@@ -15,4 +15,5 @@ abstract class Endpoint {
   static String checkout = '$baseUrl/checkout';
   static String getAllOrders = '$baseUrl/get-orders';
   static String getOrderItems = '$baseUrl/get-order-items';
+  static String changePassword = '$baseUrl/change-password';
 }
